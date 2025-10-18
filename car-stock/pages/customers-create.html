@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เพิ่มลูกค้าใหม่ | ระบบจัดการสต็อกรถ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-900 min-h-screen flex flex-col">
+  <header class="bg-slate-900 text-white px-6 lg:px-12 py-6">
+    <div class="max-w-5xl mx-auto flex items-start justify-between gap-6">
+      <div>
+        <p class="text-sm text-slate-300 uppercase tracking-wide">โมดูลข้อมูลหลัก</p>
+        <h1 class="text-3xl font-semibold tracking-tight mt-1">เพิ่มลูกค้าใหม่</h1>
+        <p class="text-slate-200 text-sm mt-2">
+          กรอกข้อมูลลูกค้าให้ครบถ้วนเพื่อใช้งานในกระบวนการขายและรายงานต่าง ๆ
+        </p>
+      </div>
+      <a href="../index.html" class="hidden sm:inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10 transition">
+        ← กลับแดชบอร์ด
+      </a>
+    </div>
+  </header>
+
+  <main class="flex-1 py-10 px-4">
+    <div class="max-w-5xl mx-auto space-y-8">
+      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <a href="../index.html" class="hover:text-slate-700">หน้าหลัก</a>
+        <span>/</span>
+        <a href="../index.html#master-data" class="hover:text-slate-700">ข้อมูลหลัก</a>
+        <span>/</span>
+        <span class="text-slate-900 font-semibold">เพิ่มลูกค้า</span>
+      </nav>
+
+      <section class="bg-white border border-slate-200 rounded-xl p-6 lg:p-8 space-y-8">
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900">ข้อมูลลูกค้า</h2>
+            <p class="text-sm text-slate-500 mt-1">ระบุประเภทลูกค้า รายละเอียดการติดต่อ และข้อมูลออกใบกำกับภาษี</p>
+          </div>
+          <button class="rounded-xl bg-indigo-100 text-indigo-700 px-4 py-2 text-sm font-semibold hover:bg-indigo-200">
+            บันทึกแบบร่าง
+          </button>
+        </div>
+
+        <form class="space-y-8">
+          <div class="grid gap-6 md:grid-cols-2">
+            <div class="space-y-2">
+              <label class="text-sm font-semibold text-slate-700">ประเภทลูกค้า</label>
+              <div class="flex gap-3 flex-wrap">
+                <label class="inline-flex items-center gap-2 text-sm text-slate-600">
+                  <input type="radio" name="customer-type" class="text-indigo-600" checked>
+                  นิติบุคคล (บริษัท/ห้างหุ้นส่วน)
+                </label>
+                <label class="inline-flex items-center gap-2 text-sm text-slate-600">
+                  <input type="radio" name="customer-type" class="text-indigo-600">
+                  บุคคลธรรมดา
+                </label>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label for="customer-code" class="text-sm font-semibold text-slate-700">รหัสลูกค้า</label>
+              <input id="customer-code" type="text" placeholder="กำหนดรหัสลูกค้า (ไม่บังคับ)" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+            <div class="space-y-2">
+              <label for="customer-name" class="text-sm font-semibold text-slate-700">ชื่อลูกค้า / บริษัท</label>
+              <input id="customer-name" type="text" placeholder="เช่น Sunrise Trading Co." class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+            <div class="space-y-2">
+              <label for="customer-tax" class="text-sm font-semibold text-slate-700">เลขประจำตัวผู้เสียภาษี</label>
+              <input id="customer-tax" type="text" placeholder="0-0000-00000-00-0" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+            <div class="space-y-2 md:col-span-2">
+              <label for="customer-address" class="text-sm font-semibold text-slate-700">ที่อยู่ตามใบกำกับภาษี</label>
+              <textarea id="customer-address" rows="3" placeholder="เลขที่ อาคาร ถนน แขวง/ตำบล เขต/อำเภอ จังหวัด รหัสไปรษณีย์" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"></textarea>
+            </div>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <div class="space-y-2">
+              <label for="customer-phone" class="text-sm font-semibold text-slate-700">เบอร์โทรศัพท์</label>
+              <input id="customer-phone" type="tel" placeholder="02-000-0000 หรือ 080-000-0000" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+            <div class="space-y-2">
+              <label for="customer-email" class="text-sm font-semibold text-slate-700">อีเมล</label>
+              <input id="customer-email" type="email" placeholder="someone@example.com" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+            <div class="space-y-2">
+              <label for="customer-website" class="text-sm font-semibold text-slate-700">เว็บไซต์ (ถ้ามี)</label>
+              <input id="customer-website" type="url" placeholder="https://company.co.th" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2">
+            <div class="space-y-2">
+              <label for="contact-person" class="text-sm font-semibold text-slate-700">ชื่อผู้ติดต่อหลัก</label>
+              <input id="contact-person" type="text" placeholder="ชื่อ-นามสกุล ผู้ติดต่อ" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+            <div class="space-y-2">
+              <label for="contact-role" class="text-sm font-semibold text-slate-700">ตำแหน่ง</label>
+              <input id="contact-role" type="text" placeholder="เช่น ผู้จัดการฝ่ายจัดซื้อ" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+            <div class="space-y-2">
+              <label for="contact-mobile" class="text-sm font-semibold text-slate-700">เบอร์มือถือผู้ติดต่อ</label>
+              <input id="contact-mobile" type="tel" placeholder="080-000-0000" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+            <div class="space-y-2">
+              <label for="contact-email" class="text-sm font-semibold text-slate-700">อีเมลผู้ติดต่อ</label>
+              <input id="contact-email" type="email" placeholder="contact@example.com" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <h3 class="text-lg font-semibold text-slate-900">เงื่อนไขเครดิต</h3>
+            <div class="grid gap-6 md:grid-cols-3">
+              <div class="space-y-2">
+                <label for="credit-term" class="text-sm font-semibold text-slate-700">Credit Term (วัน)</label>
+                <input id="credit-term" type="number" placeholder="เช่น 30" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+              </div>
+              <div class="space-y-2 md:col-span-2">
+                <label for="credit-limit" class="text-sm font-semibold text-slate-700">วงเงินเครดิต (บาท)</label>
+                <input id="credit-limit" type="number" placeholder="เช่น 500000" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400">
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="customer-notes" class="text-sm font-semibold text-slate-700">บันทึกเพิ่มเติม</label>
+            <textarea id="customer-notes" rows="4" placeholder="บันทึกข้อมูลที่ควรรู้ เช่น เงื่อนไขการส่งมอบ เอกสารเพิ่มเติม หรือผู้อนุมัติ" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400"></textarea>
+          </div>
+
+          <div class="flex flex-wrap justify-end gap-3">
+            <a href="../index.html#master-data" class="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-50">ยกเลิก</a>
+            <button type="button" class="rounded-xl border border-indigo-200 px-5 py-2.5 text-sm font-semibold text-indigo-600 hover:bg-indigo-50">บันทึกและเพิ่มต่อ</button>
+            <button type="submit" class="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow hover:bg-indigo-500">บันทึกลูกค้า</button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

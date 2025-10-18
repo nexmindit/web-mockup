@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>บันทึกรับชำระเงิน | ระบบจัดการสต็อกรถ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-900 min-h-screen flex flex-col">
+  <header class="bg-slate-900 text-white px-6 lg:px-12 py-6">
+    <div class="max-w-5xl mx-auto flex items-start justify-between gap-6">
+      <div>
+        <p class="text-sm text-slate-300 uppercase tracking-wide">โมดูลการขาย</p>
+        <h1 class="text-3xl font-semibold tracking-tight mt-1">บันทึกรับชำระเงิน</h1>
+        <p class="text-slate-200 text-sm mt-2">
+          บันทึกใบเสร็จรับเงิน เงินจอง เงินดาวน์ หรือค่าใช้จ่ายอื่น เพื่ออัปเดตสถานะการขาย
+        </p>
+      </div>
+      <a href="../index.html#sales-financial" class="hidden sm:inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10 transition">
+        ← กลับโมดูลการขาย
+      </a>
+    </div>
+  </header>
+
+  <main class="flex-1 py-10 px-4">
+    <div class="max-w-4xl mx-auto space-y-10">
+      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <a href="../index.html" class="hover:text-slate-700">หน้าหลัก</a>
+        <span>/</span>
+        <a href="../index.html#sales-financial" class="hover:text-slate-700">การขายและการเงิน</a>
+        <span>/</span>
+        <span class="text-slate-900 font-semibold">บันทึกรับชำระเงิน</span>
+      </nav>
+
+      <form class="bg-white border border-slate-200 rounded-xl p-6 lg:p-8 space-y-8">
+        <section class="space-y-6">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-semibold text-slate-900">ข้อมูลทั่วไปของใบเสร็จ</h2>
+              <p class="text-sm text-slate-500 mt-1">ระบุประเภทการรับเงินและเชื่อมโยงกับลูกค้า/เอกสารที่เกี่ยวข้อง</p>
+            </div>
+            <button class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50">อัปโหลดไฟล์แนบ</button>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2">
+            <div class="space-y-2">
+              <label for="receipt-type" class="text-sm font-semibold text-slate-700">ประเภทการรับเงิน</label>
+              <select id="receipt-type" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+                <option>เงินจอง</option>
+                <option>เงินดาวน์</option>
+                <option>ยอดจัดไฟแนนซ์</option>
+                <option>ค่าใช้จ่ายอื่น</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label for="receipt-date" class="text-sm font-semibold text-slate-700">วันที่รับเงิน</label>
+              <input id="receipt-date" type="date" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+            </div>
+            <div class="space-y-2">
+              <label for="receipt-customer" class="text-sm font-semibold text-slate-700">ลูกค้า/ผู้ชำระ</label>
+              <select id="receipt-customer" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+                <option>Somchai Worachetkul</option>
+                <option>Sunrise Trading Co.</option>
+                <option>Emerald Fleet Leasing</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label for="receipt-document" class="text-sm font-semibold text-slate-700">เชื่อมโยงเอกสาร (Quotation/Reservation)</label>
+              <select id="receipt-document" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+                <option>RSV-2024-0110 (Fortuner 2.8V 4WD)</option>
+                <option>QTN-2404-015 (Fortuner 2.8V 4WD)</option>
+                <option>RSV-2024-0104 (Peugeot 3008 GT)</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <section class="space-y-6">
+          <h2 class="text-xl font-semibold text-slate-900">รายละเอียดการชำระเงิน</h2>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <div class="space-y-2">
+              <label for="receipt-amount" class="text-sm font-semibold text-slate-700">จำนวนเงิน (บาท)</label>
+              <input id="receipt-amount" type="number" placeholder="100000" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+            </div>
+            <div class="space-y-2">
+              <label for="receipt-method" class="text-sm font-semibold text-slate-700">ช่องทางชำระเงิน</label>
+              <select id="receipt-method" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+                <option>โอนผ่านธนาคาร</option>
+                <option>เงินสด</option>
+                <option>เช็ค</option>
+                <option>บัตรเครดิต</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label for="receipt-ref" class="text-sm font-semibold text-slate-700">เลขที่อ้างอิง/เช็ค</label>
+              <input id="receipt-ref" type="text" placeholder="SCB-TRN-240410-123456" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="receipt-note" class="text-sm font-semibold text-slate-700">หมายเหตุ</label>
+            <textarea id="receipt-note" rows="3" placeholder="รายละเอียดเพิ่มเติม เช่น แคมเปญที่เกี่ยวข้อง หรือเงื่อนไขการคืนเงิน" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+          </div>
+        </section>
+
+        <section class="space-y-6">
+          <h2 class="text-xl font-semibold text-slate-900">การจัดทำใบเสร็จ</h2>
+          <div class="grid gap-6 md:grid-cols-2">
+            <div class="space-y-2">
+              <label for="receipt-series" class="text-sm font-semibold text-slate-700">เลขที่ใบเสร็จ</label>
+              <input id="receipt-series" type="text" placeholder="RCPT-2404-009" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+            </div>
+            <div class="space-y-2">
+              <label for="receipt-issuer" class="text-sm font-semibold text-slate-700">ผู้ออกใบเสร็จ</label>
+              <input id="receipt-issuer" type="text" placeholder="กัญญพัชร (แคชเชียร์)" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-rose-400">
+            </div>
+          </div>
+        </section>
+
+        <div class="flex flex-wrap justify-end gap-3">
+          <a href="../index.html#sales-financial" class="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-50">ยกเลิก</a>
+          <button type="button" class="rounded-xl border border-rose-200 px-5 py-2.5 text-sm font-semibold text-rose-600 hover:bg-rose-50">บันทึกแบบร่าง</button>
+          <button type="submit" class="rounded-xl bg-rose-600 px-5 py-2.5 text-sm font-semibold text-white shadow hover:bg-rose-500">บันทึกและออกใบเสร็จ</button>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

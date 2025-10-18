@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบจัดการสต็อกและการขายรถยนต์</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 min-h-screen flex flex-col text-slate-900">
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 lg:px-12 py-4 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-white text-lg font-semibold">CS</span>
+        <div class="flex flex-col gap-1">
+          <h1 class="text-xl font-semibold text-slate-900">ระบบจัดการสต็อกและการขายรถยนต์</h1>
+          <p class="text-sm text-slate-500">แดชบอร์ดภาพรวมสำหรับทีมจัดซื้อและฝ่ายขาย</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <button type="button" class="hidden md:flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100 transition">
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="h-4 w-4 text-slate-600">
+            <path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span>เพิ่มข้อมูลใหม่</span>
+        </button>
+        <button type="button" class="hidden sm:inline-flex items-center justify-center h-10 w-10 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 transition" aria-label="ศูนย์แจ้งเตือน">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" class="h-5 w-5">
+            <path d="M12 3a4 4 0 00-4 4v1.09c0 .46-.17.9-.47 1.24l-.78.89A3 3 0 005.5 12v4h13v-4a3 3 0 00-1.25-2.41l-.78-.9a2 2 0 01-.47-1.23V7a4 4 0 00-4-4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M10 18a2 2 0 004 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="relative" data-dropdown="profile">
+          <button type="button" class="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-2.5 sm:px-3 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 transition" data-dropdown-button>
+            <span class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-200 text-slate-700 text-base font-semibold">PR</span>
+            <div class="hidden sm:flex flex-col items-start">
+              <span class="text-sm font-semibold text-slate-900">ปวริศ รุ่งทรัพย์</span>
+              <span class="text-xs font-medium text-slate-500">ผู้จัดการฝ่ายขาย</span>
+            </div>
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" class="h-4 w-4 text-slate-400">
+              <path d="M6 7l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="absolute right-0 top-full mt-3 w-60 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm hidden" data-dropdown-panel>
+            <div class="px-4 py-3 border-b border-slate-100">
+              <p class="text-sm font-semibold text-slate-900">ปวริศ รุ่งทรัพย์</p>
+              <p class="text-xs text-slate-500 mt-1">prungsap@nexmind.co.th</p>
+            </div>
+            <div class="p-1 text-sm text-slate-700">
+              <button type="button" class="w-full rounded-lg px-3 py-2 text-left hover:bg-slate-100 transition">สลับมุมมอง</button>
+              <button type="button" class="w-full rounded-lg px-3 py-2 text-left hover:bg-slate-100 transition">ตั้งค่าระบบ</button>
+              <button type="button" class="w-full rounded-lg px-3 py-2 text-left text-rose-600 hover:bg-rose-50 transition">ออกจากระบบ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex flex-1 flex-col lg:flex-row">
+    <nav class="w-full lg:w-64 bg-white border-b lg:border-b-0 lg:border-r border-slate-200">
+      <div class="max-w-7xl mx-auto lg:mx-0 px-4 py-4 flex lg:flex-col gap-2 overflow-x-auto">
+        <button class="nav-link min-w-[140px] whitespace-nowrap rounded-lg border border-slate-900 bg-slate-900 px-4 py-2 text-left text-sm font-semibold text-white" data-target="master-data">ข้อมูลหลัก</button>
+        <button class="nav-link min-w-[140px] whitespace-nowrap rounded-lg border border-slate-200 bg-white px-4 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-100" data-target="stock-management">จัดการสต็อก</button>
+        <button class="nav-link min-w-[140px] whitespace-nowrap rounded-lg border border-slate-200 bg-white px-4 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-100" data-target="sales-financial">การขายและการเงิน</button>
+        <button class="nav-link min-w-[140px] whitespace-nowrap rounded-lg border border-slate-200 bg-white px-4 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-100" data-target="campaigns">แคมเปญ</button>
+        <button class="nav-link min-w-[140px] whitespace-nowrap rounded-lg border border-slate-200 bg-white px-4 py-2 text-left text-sm font-semibold text-slate-700 hover:bg-slate-100" data-target="reporting">รายงาน</button>
+      </div>
+    </nav>
+
+    <main class="flex-1 overflow-y-auto px-5 lg:px-12 py-10 space-y-12">
+      <section id="master-data" class="panel flex flex-col gap-8">
+        <div>
+          <h2 class="text-2xl font-semibold text-slate-900">การจัดการข้อมูลหลัก</h2>
+          <p class="text-sm text-slate-500 mt-1">บริหารข้อมูลพื้นฐานของลูกค้าและรุ่นรถยนต์</p>
+        </div>
+        <div class="grid gap-8">
+          <div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col gap-6">
+            <div class="flex items-center justify-between gap-4">
+              <h3 class="text-lg font-semibold text-slate-900">รายการลูกค้า</h3>
+              <a href="pages/customers-create.html" class="px-4 py-2 rounded-xl bg-indigo-100 text-indigo-700 text-sm font-semibold hover:bg-indigo-200">+ เพิ่มลูกค้า</a>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <input type="search" placeholder="ค้นหาลูกค้าจากชื่อ เลขภาษี หรือข้อมูลติดต่อ" class="flex-1 min-w-[220px] rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+              <select class="min-w-[160px] rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+                <option>ทุกประเภท</option>
+                <option>บริษัท</option>
+                <option>บุคคล</option>
+              </select>
+            </div>
+            <div class="overflow-hidden rounded-2xl border border-slate-200">
+              <table class="min-w-full divide-y divide-slate-200 text-sm">
+                <thead class="bg-slate-50">
+                  <tr class="text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    <th class="px-4 py-3">ลูกค้า</th>
+                    <th class="px-4 py-3">เลขภาษี</th>
+                    <th class="px-4 py-3">ผู้ติดต่อ</th>
+                    <th class="px-4 py-3">ที่อยู่</th>
+                  <th class="px-4 py-3">อัปเดตล่าสุด</th>
+                  <th class="px-4 py-3 text-right">การจัดการ</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 bg-white">
+                  <tr class="hover:bg-slate-50/70">
+                    <td class="px-4 py-3 font-semibold text-slate-900">Sunrise Trading Co.</td>
+                    <td class="px-4 py-3 text-slate-600">0105549021123</td>
+                    <td class="px-4 py-3 text-slate-600">Prapai (080-123-4567)</td>
+                    <td class="px-4 py-3 text-slate-600">99 Rama IX Rd, Bangkok</td>
+                    <td class="px-4 py-3 text-slate-600">12 เม.ย. 2024</td>
+                    <td class="px-4 py-3 text-right">
+                      <a href="pages/customers-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/70">
+                    <td class="px-4 py-3 font-semibold text-slate-900">Somchai Worachetkul</td>
+                    <td class="px-4 py-3 text-slate-600">3101701234567</td>
+                    <td class="px-4 py-3 text-slate-600">Somchai (081-555-0909)</td>
+                    <td class="px-4 py-3 text-slate-600">567 Sukhumvit 31, Bangkok</td>
+                    <td class="px-4 py-3 text-slate-600">03 เม.ย. 2024</td>
+                    <td class="px-4 py-3 text-right">
+                      <a href="pages/customers-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/70">
+                    <td class="px-4 py-3 font-semibold text-slate-900">Emerald Fleet Leasing</td>
+                    <td class="px-4 py-3 text-slate-600">0105523001785</td>
+                    <td class="px-4 py-3 text-slate-600">Karn (02-888-9900)</td>
+                    <td class="px-4 py-3 text-slate-600">159 Ratchadapisek Rd, Bangkok</td>
+                    <td class="px-4 py-3 text-slate-600">24 มี.ค. 2024</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-xl p-6 flex flex-col gap-6">
+            <div class="flex items-center justify-between gap-4">
+              <h3 class="text-lg font-semibold text-slate-900">คลังข้อมูลรุ่นรถ</h3>
+              <a href="pages/models-create.html" class="px-4 py-2 rounded-xl bg-indigo-100 text-indigo-700 text-sm font-semibold hover:bg-indigo-200">+ เพิ่มรุ่นรถ</a>
+            </div>
+            <div class="flex flex-col xl:flex-row gap-6">
+              <form class="flex-1 space-y-4">
+                <div class="space-y-2">
+                  <label for="brand" class="text-sm font-semibold text-slate-700">ยี่ห้อ</label>
+                  <input id="brand" type="text" placeholder="เช่น Toyota" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+                </div>
+                <div class="space-y-2">
+                  <label for="model" class="text-sm font-semibold text-slate-700">รุ่น</label>
+                  <input id="model" type="text" placeholder="เช่น Fortuner 2.8V" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+                </div>
+                <div class="space-y-2">
+                  <label for="color" class="text-sm font-semibold text-slate-700">สี</label>
+                  <input id="color" type="text" placeholder="เช่น สีขาวมุก" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+                </div>
+                <div class="space-y-2">
+                  <label for="spec" class="text-sm font-semibold text-slate-700">รายละเอียดสเปก</label>
+                  <textarea id="spec" rows="3" placeholder="รายละเอียดเกียร์ เครื่องยนต์ และอุปกรณ์ตกแต่ง" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"></textarea>
+                </div>
+                <div class="flex flex-wrap gap-3 pt-2">
+                  <button type="button" class="px-5 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-semibold shadow hover:bg-indigo-500">บันทึกรุ่นรถ</button>
+                  <button type="button" class="px-5 py-2.5 rounded-xl border border-indigo-200 text-indigo-600 text-sm font-semibold hover:bg-indigo-50">ล้างข้อมูล</button>
+                </div>
+              </form>
+              <div class="flex-1 rounded-2xl border border-slate-200 bg-slate-50/80 p-5 space-y-4">
+                <h4 class="text-sm font-semibold text-slate-600 uppercase tracking-wide">รุ่นยอดนิยม</h4>
+                <ul class="space-y-4 text-sm text-slate-600">
+                  <li class="flex items-start justify-between gap-3"><span><span class="font-semibold text-slate-900">Toyota Fortuner 2.8V</span> – สีขาวมุก ขับเคลื่อน 4WD เกียร์อัตโนมัติ เบาะหนัง</span><a href="pages/models-detail.html" class="text-indigo-600 text-sm font-semibold hover:text-indigo-500 whitespace-nowrap">รายละเอียด</a></li>
+                  <li class="flex items-start justify-between gap-3"><span><span class="font-semibold text-slate-900">Honda Civic RS</span> – สีดำ Crystal เครื่องยนต์เทอร์โบ พร้อม Honda Sensing</span><a href="pages/models-detail.html" class="text-indigo-600 text-sm font-semibold hover:text-indigo-500 whitespace-nowrap">รายละเอียด</a></li>
+                  <li class="flex items-start justify-between gap-3"><span><span class="font-semibold text-slate-900">Mitsubishi Triton Athlete</span> – สีส้ม/ดำ ขับเคลื่อน 4x4 หน้าจอ 7 นิ้ว</span><a href="pages/models-detail.html" class="text-indigo-600 text-sm font-semibold hover:text-indigo-500 whitespace-nowrap">รายละเอียด</a></li>
+                  <li class="flex items-start justify-between gap-3"><span><span class="font-semibold text-slate-900">BMW X3 xDrive20d</span> – สีขาว Alpine เครื่องดีเซล ชุดแต่ง M Sport</span><a href="pages/models-detail.html" class="text-indigo-600 text-sm font-semibold hover:text-indigo-500 whitespace-nowrap">รายละเอียด</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="stock-management" class="panel hidden flex flex-col gap-8">
+        <div>
+          <h2 class="text-2xl font-semibold text-slate-900">การจัดการสต็อกรถ</h2>
+          <p class="text-sm text-slate-500 mt-1">ติดตามสต็อกรถ สถานะ และต้นทุนการถือครองได้แบบเรียลไทม์</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="text-lg font-semibold text-slate-900">บันทึกรถเข้าสต็อก</h3>
+            <a href="pages/stock-create.html" class="px-4 py-2 rounded-xl bg-emerald-100 text-emerald-700 text-sm font-semibold hover:bg-emerald-200">+ เปิดหน้าบันทึกเต็ม</a>
+          </div>
+          <form class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <div class="space-y-2">
+              <label for="arrival-date" class="text-sm font-semibold text-slate-700">วันที่เข้าสต็อก</label>
+              <input id="arrival-date" type="date" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="chassis" class="text-sm font-semibold text-slate-700">หมายเลขตัวถัง</label>
+              <input id="chassis" type="text" placeholder="เช่น MR0JZ3CD001234567" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="vin" class="text-sm font-semibold text-slate-700">หมายเลข VIN</label>
+              <input id="vin" type="text" placeholder="เช่น JTMHU09J704567123" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="model-select" class="text-sm font-semibold text-slate-700">รุ่นรถ</label>
+              <select id="model-select" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+                <option>เลือกรุ่นรถ</option>
+                <option>Toyota Fortuner 2.8V</option>
+                <option>Honda Civic RS</option>
+                <option>Mitsubishi Triton Athlete</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label for="cost" class="text-sm font-semibold text-slate-700">ราคาทุน (บาท)</label>
+              <input id="cost" type="number" placeholder="0.00" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="location" class="text-sm font-semibold text-slate-700">สถานที่จัดเก็บ</label>
+              <input id="location" type="text" placeholder="คลังสินค้า โชว์รูม ฯลฯ" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="interest-rate" class="text-sm font-semibold text-slate-700">ดอกเบี้ย % ต่อเดือน</label>
+              <input id="interest-rate" type="number" placeholder="เช่น 1.5" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="days-in-stock" class="text-sm font-semibold text-slate-700">จำนวนวันในสต็อก</label>
+              <input id="days-in-stock" type="number" placeholder="เช่น 32" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="net-cost" class="text-sm font-semibold text-slate-700">ราคาทุนสุทธิ (คำนวณ)</label>
+              <input id="net-cost" type="text" placeholder="คำนวณอัตโนมัติ" disabled class="w-full rounded-xl border border-slate-200 bg-slate-100 px-4 py-2.5 text-sm font-semibold text-slate-500">
+            </div>
+            <div class="flex flex-wrap gap-3 pt-2 md:col-span-2 xl:col-span-3">
+              <button type="button" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-sm font-semibold shadow hover:bg-emerald-500">บันทึกข้อมูล</button>
+              <button type="button" class="px-5 py-2.5 rounded-xl border border-emerald-200 text-emerald-600 text-sm font-semibold hover:bg-emerald-50">ล้าง</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900">ภาพรวมสต็อก</h3>
+              <p class="text-sm text-slate-500 mt-1">ติดตามรถที่พร้อมขาย จองแล้ว และขายออก</p>
+            </div>
+            <div class="flex gap-2">
+              <button class="chip inline-flex items-center rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide bg-slate-900 text-white shadow" data-target="all-stock">ทั้งหมด</button>
+              <button class="chip inline-flex items-center rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide bg-slate-100 text-slate-600 hover:bg-slate-200" data-target="reserved-stock">จองแล้ว</button>
+              <button class="chip inline-flex items-center rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide bg-slate-100 text-slate-600 hover:bg-slate-200" data-target="sold-stock">ขายแล้ว</button>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <input type="search" placeholder="ค้นหา VIN หมายเลขตัวถัง รุ่น หรือสี" class="flex-1 min-w-[220px] rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400">
+            <select class="min-w-[180px] rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400">
+              <option>ทุกสถานที่</option>
+              <option>โชว์รูม</option>
+              <option>คลังสินค้า</option>
+              <option>เตรียมส่งมอบ</option>
+            </select>
+            <select class="min-w-[200px] rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400">
+              <option>เรียงตามจำนวนวันในสต็อก</option>
+              <option>ใหม่ล่าสุด</option>
+              <option>เก่าสุด</option>
+              <option>ทุนสุทธิสูงสุด</option>
+              <option>ทุนสุทธิต่ำสุด</option>
+            </select>
+          </div>
+
+          <div id="all-stock" class="table-wrapper overflow-hidden rounded-2xl border border-slate-200">
+            <table class="min-w-full divide-y divide-slate-200 text-sm">
+              <thead class="bg-slate-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">VIN</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">รุ่นรถ</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">สถานะ</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">จำนวนวันในสต็อก</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">ราคาทุน / ทุนสุทธิ</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">สถานที่</th>
+                  <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">รายละเอียด</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 bg-white">
+                <tr class="hover:bg-slate-50/70">
+                  <td class="px-4 py-3 font-semibold text-slate-900">MR0JZ3CD001234567</td>
+                  <td class="px-4 py-3 text-slate-600">Mitsubishi Triton Athlete</td>
+                  <td class="px-4 py-3">
+                    <span class="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">พร้อมขาย</span>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600">14</td>
+                  <td class="px-4 py-3 text-slate-600">789,000 / 798,867</td>
+                  <td class="px-4 py-3 text-slate-600">Warehouse A</td>
+                  <td class="px-4 py-3 text-right">
+                    <a href="pages/stock-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70">
+                  <td class="px-4 py-3 font-semibold text-slate-900">JTMHU09J704567123</td>
+                  <td class="px-4 py-3 text-slate-600">Toyota Fortuner 2.8V</td>
+                  <td class="px-4 py-3">
+                    <span class="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">จองแล้ว</span>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600">32</td>
+                  <td class="px-4 py-3 text-slate-600">1,329,000 / 1,392,345</td>
+                  <td class="px-4 py-3 text-slate-600">Showroom</td>
+                  <td class="px-4 py-3 text-right">
+                    <a href="pages/stock-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70">
+                  <td class="px-4 py-3 font-semibold text-slate-900">WBAWY3105K0E92011</td>
+                  <td class="px-4 py-3 text-slate-600">BMW X3 xDrive20d</td>
+                  <td class="px-4 py-3">
+                    <span class="inline-flex items-center rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700">ขายแล้ว</span>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600">45</td>
+                  <td class="px-4 py-3 text-slate-600">2,899,000 / 3,052,987</td>
+                  <td class="px-4 py-3 text-slate-600">Delivery Prep</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="reserved-stock" class="table-wrapper hidden overflow-hidden rounded-2xl border border-slate-200">
+            <table class="min-w-full divide-y divide-slate-200 text-sm">
+              <thead class="bg-slate-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">VIN</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">รุ่นรถ</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">ผู้จอง</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">วันที่จอง</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">วันหมดอายุ</th>
+                  <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">รายละเอียด</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 bg-white">
+                <tr class="hover:bg-slate-50/70">
+                  <td class="px-4 py-3 font-semibold text-slate-900">JTMHU09J704567123</td>
+                  <td class="px-4 py-3 text-slate-600">Toyota Fortuner 2.8V</td>
+                  <td class="px-4 py-3 text-slate-600">Somchai Worachetkul</td>
+                  <td class="px-4 py-3 text-slate-600">05 เม.ย. 2024</td>
+                  <td class="px-4 py-3 text-slate-600">20 เม.ย. 2024</td>
+                  <td class="px-4 py-3 text-right">
+                    <a href="pages/stock-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70">
+                  <td class="px-4 py-3 font-semibold text-slate-900">VF3LBHN110R012345</td>
+                  <td class="px-4 py-3 text-slate-600">Peugeot 3008 GT</td>
+                  <td class="px-4 py-3 text-slate-600">Sunrise Trading Co.</td>
+                  <td class="px-4 py-3 text-slate-600">15 เม.ย. 2024</td>
+                  <td class="px-4 py-3 text-slate-600">30 เม.ย. 2024</td>
+                  <td class="px-4 py-3 text-right">
+                    <a href="pages/stock-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="sold-stock" class="table-wrapper hidden overflow-hidden rounded-2xl border border-slate-200">
+            <table class="min-w-full divide-y divide-slate-200 text-sm">
+              <thead class="bg-slate-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">VIN</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">รุ่นรถ</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">วันที่ขาย</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">ลูกค้า</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">กำไร (บาท)</th>
+                  <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">รายละเอียด</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 bg-white">
+                <tr class="hover:bg-slate-50/70">
+                  <td class="px-4 py-3 font-semibold text-slate-900">WBAWY3105K0E92011</td>
+                  <td class="px-4 py-3 text-slate-600">BMW X3 xDrive20d</td>
+                  <td class="px-4 py-3 text-slate-600">02 เม.ย. 2024</td>
+                  <td class="px-4 py-3 text-slate-600">Emerald Fleet Leasing</td>
+                  <td class="px-4 py-3 text-slate-600">138,500</td>
+                  <td class="px-4 py-3 text-right">
+                    <a href="pages/stock-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70">
+                  <td class="px-4 py-3 font-semibold text-slate-900">MRHGK5760JP038211</td>
+                  <td class="px-4 py-3 text-slate-600">Honda Civic RS</td>
+                  <td class="px-4 py-3 text-slate-600">28 มี.ค. 2024</td>
+                  <td class="px-4 py-3 text-slate-600">Ratchada Auto Rent</td>
+                  <td class="px-4 py-3 text-slate-600">92,700</td>
+                  <td class="px-4 py-3 text-right">
+                    <a href="pages/stock-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="sales-financial" class="panel hidden flex flex-col gap-8">
+        <div>
+          <h2 class="text-2xl font-semibold text-slate-900">การขายและการเงิน</h2>
+          <p class="text-sm text-slate-500 mt-1">สร้างใบเสนอราคา จัดการสัญญาจอง และบันทึกการรับชำระเงิน</p>
+        </div>
+        <div class="grid gap-8 xl:grid-cols-2">
+          <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+            <div class="flex items-center justify-between gap-4">
+              <h3 class="text-lg font-semibold text-slate-900">สร้างใบเสนอราคา</h3>
+              <a href="pages/quotation-create.html" class="px-4 py-2 rounded-xl bg-indigo-100 text-indigo-700 text-sm font-semibold hover:bg-indigo-200">+ เปิดหน้าสร้างใหม่</a>
+            </div>
+            <form class="grid gap-5 sm:grid-cols-2">
+              <div class="space-y-2 sm:col-span-1">
+                <label for="quote-no" class="text-sm font-semibold text-slate-700">เลขที่ใบเสนอราคา</label>
+                <input id="quote-no" type="text" placeholder="สร้างอัตโนมัติ" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+              </div>
+              <div class="space-y-2 sm:col-span-1">
+                <label for="quote-customer" class="text-sm font-semibold text-slate-700">ลูกค้า</label>
+                <select id="quote-customer" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+                  <option>เลือกลูกค้า</option>
+                  <option>Sunrise Trading Co.</option>
+                  <option>Somchai Worachetkul</option>
+                  <option>Emerald Fleet Leasing</option>
+                </select>
+              </div>
+              <div class="space-y-2 sm:col-span-1">
+                <label for="quote-car" class="text-sm font-semibold text-slate-700">รถยนต์</label>
+                <select id="quote-car" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+                  <option>เลือกรถจากสต็อก</option>
+                  <option>JTMHU09J704567123 - Toyota Fortuner 2.8V</option>
+                  <option>MR0JZ3CD001234567 - Mitsubishi Triton Athlete</option>
+                </select>
+              </div>
+              <div class="space-y-2 sm:col-span-1">
+                <label for="quote-price" class="text-sm font-semibold text-slate-700">ราคาเสนอขาย</label>
+                <input id="quote-price" type="number" placeholder="1,390,000" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+              </div>
+              <div class="space-y-2 sm:col-span-2">
+                <label for="quote-notes" class="text-sm font-semibold text-slate-700">หมายเหตุ</label>
+                <textarea id="quote-notes" rows="3" placeholder="ระบุเวลาส่งมอบ ของแถม หรือข้อมูลเพิ่มเติม" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"></textarea>
+              </div>
+              <div class="flex flex-wrap gap-3 sm:col-span-2">
+                <a href="pages/quotation-detail.html" class="px-5 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-semibold shadow hover:bg-indigo-500 text-center">ดูตัวอย่าง PDF</a>
+                <button type="button" class="px-5 py-2.5 rounded-xl border border-indigo-200 text-indigo-600 text-sm font-semibold hover:bg-indigo-50">พิมพ์</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+            <div class="flex items-center justify-between gap-4">
+              <h3 class="text-lg font-semibold text-slate-900">สัญญาจองรถ</h3>
+              <a href="pages/reservation-create.html" class="px-4 py-2 rounded-xl bg-emerald-100 text-emerald-700 text-sm font-semibold hover:bg-emerald-200">+ เปิดหน้าสร้างใหม่</a>
+            </div>
+            <div class="overflow-hidden rounded-2xl border border-slate-200">
+              <table class="min-w-full divide-y divide-slate-200 text-sm">
+                <thead class="bg-slate-50">
+                  <tr>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">เลขที่สัญญา</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">ลูกค้า</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">รถยนต์</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">วันที่จอง</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">สถานะ</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">การชำระเงิน</th>
+                    <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">รายละเอียด</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 bg-white">
+                  <tr class="hover:bg-slate-50/70">
+                    <td class="px-4 py-3 font-semibold text-slate-900">RSV-2024-0110</td>
+                    <td class="px-4 py-3 text-slate-600">Somchai Worachetkul</td>
+                    <td class="px-4 py-3 text-slate-600">Fortuner 2.8V (VIN: JTMHU09J704567123)</td>
+                    <td class="px-4 py-3 text-slate-600">05 เม.ย. 2024</td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">จองแล้ว</span>
+                    </td>
+                    <td class="px-4 py-3 text-slate-600">เงินจอง 50,000 บาท</td>
+                    <td class="px-4 py-3 text-right">
+                      <a href="pages/reservation-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/70">
+                    <td class="px-4 py-3 font-semibold text-slate-900">RSV-2024-0104</td>
+                    <td class="px-4 py-3 text-slate-600">Sunrise Trading Co.</td>
+                    <td class="px-4 py-3 text-slate-600">Peugeot 3008 GT (VIN: VF3LBHN110R012345)</td>
+                    <td class="px-4 py-3 text-slate-600">15 เม.ย. 2024</td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">จองแล้ว</span>
+                    </td>
+                    <td class="px-4 py-3 text-slate-600">เงินจอง 100,000 บาท</td>
+                    <td class="px-4 py-3 text-right">
+                      <a href="pages/reservation-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-xl p-6 xl:col-span-2 space-y-6">
+            <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <div>
+                <h3 class="text-lg font-semibold text-slate-900">ทะเบียนการรับเงิน</h3>
+                <p class="text-sm text-slate-500 mt-1">ตรวจสอบประวัติเงินจอง เงินดาวน์ และค่าใช้จ่ายอื่น</p>
+              </div>
+              <a href="pages/payment-create.html" class="px-4 py-2 rounded-xl bg-rose-100 text-rose-700 text-sm font-semibold hover:bg-rose-200">+ เปิดหน้าบันทึกรับชำระ</a>
+            </div>
+            <div class="flex flex-wrap gap-3">
+              <input type="search" placeholder="ค้นหาเลขที่ใบเสร็จ ลูกค้า หรือ VIN" class="flex-1 min-w-[260px] rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400">
+              <select class="min-w-[160px] rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400">
+                <option>ทุกประเภท</option>
+                <option>เงินจอง</option>
+                <option>เงินดาวน์</option>
+                <option>ค่าใช้จ่ายอื่น</option>
+              </select>
+              <input type="month" class="min-w-[160px] rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-400">
+            </div>
+            <div class="overflow-hidden rounded-2xl border border-slate-200">
+              <table class="min-w-full divide-y divide-slate-200 text-sm">
+                <thead class="bg-slate-50">
+                  <tr>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">เลขที่ใบเสร็จ</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">วันที่</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">ลูกค้า</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">รถยนต์</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">จำนวนเงิน (บาท)</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">ประเภทการชำระ</th>
+                    <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">รายละเอียด</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 bg-white">
+                  <tr class="hover:bg-slate-50/70">
+                    <td class="px-4 py-3 font-semibold text-slate-900">RCPT-240415-001</td>
+                    <td class="px-4 py-3 text-slate-600">15 เม.ย. 2024</td>
+                    <td class="px-4 py-3 text-slate-600">Sunrise Trading Co.</td>
+                    <td class="px-4 py-3 text-slate-600">Peugeot 3008 GT</td>
+                    <td class="px-4 py-3 text-slate-600">100,000</td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">เงินจอง</span>
+                    </td>
+                    <td class="px-4 py-3 text-right">
+                      <a href="pages/payment-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/70">
+                    <td class="px-4 py-3 font-semibold text-slate-900">RCPT-240412-003</td>
+                    <td class="px-4 py-3 text-slate-600">12 เม.ย. 2024</td>
+                    <td class="px-4 py-3 text-slate-600">Somchai Worachetkul</td>
+                    <td class="px-4 py-3 text-slate-600">Toyota Fortuner 2.8V</td>
+                    <td class="px-4 py-3 text-slate-600">300,000</td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700">เงินดาวน์</span>
+                    </td>
+                    <td class="px-4 py-3 text-right">
+                      <a href="pages/payment-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/70">
+                    <td class="px-4 py-3 font-semibold text-slate-900">RCPT-240406-004</td>
+                    <td class="px-4 py-3 text-slate-600">06 เม.ย. 2024</td>
+                    <td class="px-4 py-3 text-slate-600">Emerald Fleet Leasing</td>
+                    <td class="px-4 py-3 text-slate-600">BMW X3 xDrive20d</td>
+                    <td class="px-4 py-3 text-slate-600">45,000</td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700">ค่าใช้จ่ายอื่น</span>
+                    </td>
+                    <td class="px-4 py-3 text-right">
+                      <a href="pages/payment-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="campaigns" class="panel hidden flex flex-col gap-8">
+        <div>
+          <h2 class="text-2xl font-semibold text-slate-900">การจัดการแคมเปญ</h2>
+          <p class="text-sm text-slate-500 mt-1">ติดตามโปรโมชั่นการขายและผลกระทบต่อราคาทุนของรถ</p>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <h3 class="text-lg font-semibold text-slate-900">แคมเปญที่ใช้งานอยู่</h3>
+              <p class="text-sm text-slate-500 mt-1">เชื่อมโยงโปรโมชั่นกับสต็อกเพื่อคำนวณกำไรได้แม่นยำ</p>
+            </div>
+            <a href="pages/campaign-create.html" class="px-4 py-2 rounded-xl bg-indigo-100 text-indigo-700 text-sm font-semibold hover:bg-indigo-200">+ เปิดหน้าสร้างใหม่</a>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <input type="search" placeholder="ค้นหาด้วยชื่อแคมเปญหรือรุ่นรถ" class="flex-1 min-w-[240px] rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+            <select class="min-w-[180px] rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+              <option>สถานะ: ทั้งหมด</option>
+              <option>กำลังใช้งาน</option>
+              <option>กำลังจะเริ่ม</option>
+              <option>หมดอายุ</option>
+            </select>
+            <select class="min-w-[180px] rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+              <option>ประเภทรถ: ทั้งหมด</option>
+              <option>SUV</option>
+              <option>Sedan</option>
+              <option>Pickup</option>
+            </select>
+          </div>
+          <div class="overflow-hidden rounded-2xl border border-slate-200">
+            <table class="min-w-full divide-y divide-slate-200 text-sm">
+              <thead class="bg-slate-50">
+                <tr>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">ชื่อแคมเปญ</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">รุ่นที่ร่วมรายการ</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">ส่วนลด / สิทธิประโยชน์</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">ระยะเวลา</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">สถานะ</th>
+                  <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">สต็อกที่เชื่อมโยง</th>
+                  <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">รายละเอียด</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 bg-white">
+                <tr class="hover:bg-slate-50/70">
+                  <td class="px-4 py-3 font-semibold text-slate-900">Summer SUV Boost</td>
+                  <td class="px-4 py-3 text-slate-600">SUV ทุกรุ่น</td>
+                  <td class="px-4 py-3 text-slate-600">ชุดอุปกรณ์ตกแต่ง + ดอกเบี้ย 0.99%</td>
+                  <td class="px-4 py-3 text-slate-600">01 เม.ย. 2024 - 31 พ.ค. 2024</td>
+                  <td class="px-4 py-3">
+                    <span class="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">กำลังใช้งาน</span>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600">12 คัน</td>
+                  <td class="px-4 py-3 text-right">
+                    <a href="pages/campaign-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70">
+                  <td class="px-4 py-3 font-semibold text-slate-900">Fleet Advantage 2024</td>
+                  <td class="px-4 py-3 text-slate-600">Fortuner, Triton, Hilux</td>
+                  <td class="px-4 py-3 text-slate-600">ส่วนลดคันละ 30,000 บาท</td>
+                  <td class="px-4 py-3 text-slate-600">15 มี.ค. 2024 - 30 มิ.ย. 2024</td>
+                  <td class="px-4 py-3">
+                    <span class="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">กำลังจะเริ่ม</span>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600">28 คัน</td>
+                  <td class="px-4 py-3 text-right">
+                    <a href="pages/campaign-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50/70">
+                  <td class="px-4 py-3 font-semibold text-slate-900">Luxury Trade-In</td>
+                  <td class="px-4 py-3 text-slate-600">BMW X Series</td>
+                  <td class="px-4 py-3 text-slate-600">รับรถเทิร์นขั้นต่ำ 150,000 บาท</td>
+                  <td class="px-4 py-3 text-slate-600">01 ม.ค. 2024 - 31 มี.ค. 2024</td>
+                  <td class="px-4 py-3">
+                    <span class="inline-flex items-center rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700">หมดอายุ</span>
+                  </td>
+                  <td class="px-4 py-3 text-slate-600">7 คัน</td>
+                  <td class="px-4 py-3 text-right">
+                    <a href="pages/campaign-detail.html" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">ดูรายละเอียด</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="reporting" class="panel hidden flex flex-col gap-8">
+        <div>
+          <h2 class="text-2xl font-semibold text-slate-900">แดชบอร์ดรายงาน</h2>
+          <p class="text-sm text-slate-500 mt-1">นำเสนอข้อมูลใบเสร็จรายวัน สถานะสต็อก และกำไรขาดทุน</p>
+        </div>
+        <div class="grid gap-8">
+          <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6 xl:col-span-1">
+            <div class="flex items-center justify-between gap-3">
+              <h3 class="text-lg font-semibold text-slate-900">รายงานใบเสร็จรายวัน</h3>
+              <div class="flex gap-2">
+                <button class="chip inline-flex items-center rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-wide bg-slate-900 text-white shadow">วันนี้</button>
+                <button class="chip inline-flex items-center rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-wide bg-slate-100 text-slate-600 hover:bg-slate-200">เมื่อวาน</button>
+                <button class="chip inline-flex items-center rounded-full px-3 py-2 text-xs font-semibold uppercase tracking-wide bg-slate-100 text-slate-600 hover:bg-slate-200">กำหนดเอง</button>
+              </div>
+            </div>
+            <div class="overflow-hidden rounded-2xl border border-slate-200">
+              <table class="min-w-full divide-y divide-slate-200 text-sm">
+                <thead class="bg-slate-50">
+                  <tr>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">ใบเสร็จ</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">ลูกค้า</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">รถยนต์</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">ประเภท</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">จำนวนเงิน</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 bg-white">
+                  <tr class="hover:bg-slate-50/70">
+                    <td class="px-4 py-3 font-semibold text-slate-900">RCPT-240416-002</td>
+                    <td class="px-4 py-3 text-slate-600">Somchai Worachetkul</td>
+                    <td class="px-4 py-3 text-slate-600">Fortuner 2.8V</td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">เงินจอง</span>
+                    </td>
+                    <td class="px-4 py-3 text-slate-600">50,000</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/70">
+                    <td class="px-4 py-3 font-semibold text-slate-900">RCPT-240416-001</td>
+                    <td class="px-4 py-3 text-slate-600">Emerald Fleet Leasing</td>
+                    <td class="px-4 py-3 text-slate-600">BMW X3 xDrive20d</td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700">ค่าใช้จ่ายอื่น</span>
+                    </td>
+                    <td class="px-4 py-3 text-slate-600">25,000</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+            <div class="flex items-center justify-between gap-4">
+              <h3 class="text-lg font-semibold text-slate-900">ภาพรวมสต็อก</h3>
+              <select class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400">
+                <option>เมษายน 2024</option>
+                <option>มีนาคม 2024</option>
+                <option>กุมภาพันธ์ 2024</option>
+              </select>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 space-y-1">
+                <span class="text-xs font-semibold uppercase tracking-wide text-slate-500">จำนวนรถในสต็อก</span>
+                <p class="text-3xl font-semibold text-slate-900">42</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 space-y-1">
+                <span class="text-xs font-semibold uppercase tracking-wide text-slate-500">คันที่ถูกจอง</span>
+                <p class="text-3xl font-semibold text-slate-900">9</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 space-y-1">
+                <span class="text-xs font-semibold uppercase tracking-wide text-slate-500">ขายออกเดือนนี้</span>
+                <p class="text-3xl font-semibold text-slate-900">15</p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-slate-50/70 p-4 space-y-1">
+                <span class="text-xs font-semibold uppercase tracking-wide text-slate-500">จำนวนวันเฉลี่ยในสต็อก</span>
+                <p class="text-3xl font-semibold text-slate-900">28</p>
+              </div>
+            </div>
+            <div class="flex h-48 items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 text-sm text-slate-400">
+              แผนภูมิแท่ง (จำลอง)
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+            <div class="flex items-center justify-between gap-4">
+              <h3 class="text-lg font-semibold text-slate-900">สรุปกำไรขาดทุน</h3>
+              <select class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400">
+                <option>ไตรมาส 2 / 2024</option>
+                <option>ไตรมาส 1 / 2024</option>
+                <option>ปีงบประมาณ 2023</option>
+              </select>
+            </div>
+            <div class="grid gap-4">
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-slate-600">ยอดขายรวม</span>
+                <span class="text-lg font-semibold text-slate-900">48.7M THB</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-slate-600">ต้นทุนรถสุทธิ</span>
+                <span class="text-lg font-semibold text-slate-900">38.1M THB</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-slate-600">ค่าใช้จ่ายแคมเปญ</span>
+                <span class="text-lg font-semibold text-slate-900">2.4M THB</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-slate-600">ค่าใช้จ่ายดอกเบี้ยถือครอง</span>
+                <span class="text-lg font-semibold text-slate-900">1.8M THB</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-slate-600">กำไรสุทธิ</span>
+                <span class="text-lg font-semibold text-indigo-600">6.4M THB</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold text-slate-600">อัตรากำไร</span>
+                <span class="text-lg font-semibold text-indigo-600">13.1%</span>
+              </div>
+            </div>
+            <div class="flex h-48 items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 text-sm text-slate-400">
+              กราฟเส้นแนวโน้ม (จำลอง)
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="bg-white border-t border-slate-200 py-5">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 text-right text-sm text-slate-500">
+      หน้าจอจำลอง &bull; NexmindIT &bull; 2024
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

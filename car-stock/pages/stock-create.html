@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>บันทึกรถเข้าสต็อก | ระบบจัดการสต็อกรถ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-900 min-h-screen flex flex-col">
+  <header class="bg-slate-900 text-white px-6 lg:px-12 py-6">
+    <div class="max-w-5xl mx-auto flex items-start justify-between gap-6">
+      <div>
+        <p class="text-sm text-slate-300 uppercase tracking-wide">โมดูลสต็อกรถ</p>
+        <h1 class="text-3xl font-semibold tracking-tight mt-1">บันทึกรถเข้าสต็อก</h1>
+        <p class="text-slate-200 text-sm mt-2">
+          กรอกข้อมูลรถที่เข้าสต็อกใหม่ พร้อมรายละเอียดด้านการเงินและสถานะเพื่อการติดตาม
+        </p>
+      </div>
+      <a href="../index.html#stock-management" class="hidden sm:inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10 transition">
+        ← กลับภาพรวมสต็อก
+      </a>
+    </div>
+  </header>
+
+  <main class="flex-1 py-10 px-4">
+    <div class="max-w-5xl mx-auto space-y-10">
+      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <a href="../index.html" class="hover:text-slate-700">หน้าหลัก</a>
+        <span>/</span>
+        <a href="../index.html#stock-management" class="hover:text-slate-700">สต็อกรถ</a>
+        <span>/</span>
+        <span class="text-slate-900 font-semibold">บันทึกรถเข้าสต็อก</span>
+      </nav>
+
+      <form class="space-y-10">
+        <section class="bg-white border border-slate-200 rounded-xl p-6 lg:p-8 space-y-6">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <h2 class="text-xl font-semibold text-slate-900">ข้อมูลรถยนต์</h2>
+              <p class="text-sm text-slate-500 mt-1">ระบุข้อมูลพื้นฐานของรถและรายละเอียดการผลิต</p>
+            </div>
+            <button class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50">ดึงจากรุ่นในคลัง</button>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <div class="space-y-2 md:col-span-2">
+              <label for="vehicle-model" class="text-sm font-semibold text-slate-700">รุ่นรถ</label>
+              <input id="vehicle-model" type="text" placeholder="เช่น Toyota Fortuner 2.8V 4WD" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="model-year" class="text-sm font-semibold text-slate-700">Model Year</label>
+              <input id="model-year" type="number" placeholder="2024" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="vin" class="text-sm font-semibold text-slate-700">หมายเลข VIN</label>
+              <input id="vin" type="text" placeholder="JTMHU09J704567123" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="chassis" class="text-sm font-semibold text-slate-700">หมายเลขตัวถัง</label>
+              <input id="chassis" type="text" placeholder="MR0JZ3CD001234567" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="engine-no" class="text-sm font-semibold text-slate-700">หมายเลขเครื่องยนต์</label>
+              <input id="engine-no" type="text" placeholder="1GD-FTV-0123456" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <div class="space-y-2">
+              <label for="color" class="text-sm font-semibold text-slate-700">สีภายนอก</label>
+              <input id="color" type="text" placeholder="Pearl White" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="interior" class="text-sm font-semibold text-slate-700">สีภายใน</label>
+              <input id="interior" type="text" placeholder="Black/Brown Leather" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="arrival-date" class="text-sm font-semibold text-slate-700">วันที่เข้าสต็อก</label>
+              <input id="arrival-date" type="date" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+          </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6 lg:p-8 space-y-6">
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900">ข้อมูลการจัดเก็บและสถานะ</h2>
+            <p class="text-sm text-slate-500 mt-1">กำหนดตำแหน่งจัดเก็บและสถานะล่าสุดของรถ</p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <div class="space-y-2">
+              <label for="location" class="text-sm font-semibold text-slate-700">สถานที่จัดเก็บ</label>
+              <select id="location" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+                <option>เลือกสถานที่</option>
+                <option>Warehouse A</option>
+                <option>Warehouse B</option>
+                <option>โชว์รูมหลัก</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label for="parking-slot" class="text-sm font-semibold text-slate-700">หมายเลขช่องจอด</label>
+              <input id="parking-slot" type="text" placeholder="A-12" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="status" class="text-sm font-semibold text-slate-700">สถานะปัจจุบัน</label>
+              <select id="status" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+                <option>พร้อมขาย</option>
+                <option>จองแล้ว</option>
+                <option>เตรียมส่งมอบ</option>
+                <option>ขายแล้ว (รอส่งมอบ)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="pre-delivery" class="text-sm font-semibold text-slate-700">หมายเหตุการเตรียมส่งมอบ</label>
+            <textarea id="pre-delivery" rows="3" placeholder="ตรวจสภาพก่อนส่งมอบ, ติดตั้งอุปกรณ์เสริม, จัดเตรียมป้ายแดง ฯลฯ" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"></textarea>
+          </div>
+        </section>
+
+        <section class="bg-white border border-slate-200 rounded-xl p-6 lg:p-8 space-y-6">
+          <div>
+            <h2 class="text-xl font-semibold text-slate-900">ข้อมูลการเงินและต้นทุน</h2>
+            <p class="text-sm text-slate-500 mt-1">คำนวณต้นทุนรวม รวมถึงดอกเบี้ยและค่าใช้จ่ายเพิ่มเติม</p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <div class="space-y-2">
+              <label for="base-cost" class="text-sm font-semibold text-slate-700">ราคาทุน (บาท)</label>
+              <input id="base-cost" type="number" placeholder="1329000" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="additional-cost" class="text-sm font-semibold text-slate-700">ค่าขนส่ง/ตกแต่ง (บาท)</label>
+              <input id="additional-cost" type="number" placeholder="25000" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="interest-rate" class="text-sm font-semibold text-slate-700">อัตราดอกเบี้ยถือครอง (%/เดือน)</label>
+              <input id="interest-rate" type="number" placeholder="1.5" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2">
+            <div class="space-y-2">
+              <label for="finance-provider" class="text-sm font-semibold text-slate-700">ผู้ให้ไฟแนนซ์ (ถ้ามี)</label>
+              <input id="finance-provider" type="text" placeholder="เช่น ธนาคารไทยพาณิชย์ (สัญญาเลขที่ ...)" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+            <div class="space-y-2">
+              <label for="expected-price" class="text-sm font-semibold text-slate-700">ราคาขายเป้าหมาย (บาท)</label>
+              <input id="expected-price" type="number" placeholder="1390000" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <label for="finance-note" class="text-sm font-semibold text-slate-700">หมายเหตุด้านการเงิน</label>
+            <textarea id="finance-note" rows="3" placeholder="บันทึกรายละเอียดดอกเบี้ยพิเศษ ค่าใช้จ่ายที่ต้องตาม หรือแคมเปญที่ต้องคำนึงถึง" class="w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-400"></textarea>
+          </div>
+        </section>
+
+        <div class="flex flex-wrap justify-end gap-3">
+          <a href="../index.html#stock-management" class="rounded-xl border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-50">ยกเลิก</a>
+          <button type="button" class="rounded-xl border border-emerald-200 px-5 py-2.5 text-sm font-semibold text-emerald-600 hover:bg-emerald-50">บันทึกและเพิ่มอีกรายการ</button>
+          <button type="submit" class="rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow hover:bg-emerald-500">บันทึกรถเข้าสต็อก</button>
+        </div>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

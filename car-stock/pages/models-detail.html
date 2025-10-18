@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>รายละเอียดรุ่นรถ | ระบบจัดการสต็อกรถ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-900 min-h-screen flex flex-col">
+  <header class="bg-slate-900 text-white px-6 lg:px-12 py-6">
+    <div class="max-w-5xl mx-auto flex items-start justify-between gap-6">
+      <div>
+        <p class="text-sm text-slate-300 uppercase tracking-wide">โมดูลข้อมูลหลัก</p>
+        <h1 class="text-3xl font-semibold tracking-tight mt-1">รายละเอียดรุ่นรถ</h1>
+        <p class="text-slate-200 text-sm mt-2">
+          สเปกรถยนต์ สี ราคา และการเชื่อมโยงกับสต็อกที่มีอยู่ในระบบ
+        </p>
+      </div>
+      <a href="../index.html#master-data" class="hidden sm:inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10 transition">
+        ← กลับคลังรุ่นรถ
+      </a>
+    </div>
+  </header>
+
+  <main class="flex-1 py-10 px-4">
+    <div class="max-w-5xl mx-auto space-y-8">
+      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <a href="../index.html" class="hover:text-slate-700">หน้าหลัก</a>
+        <span>/</span>
+        <a href="../index.html#master-data" class="hover:text-slate-700">ข้อมูลหลัก</a>
+        <span>/</span>
+        <span class="text-slate-900 font-semibold">รายละเอียดรุ่นรถ</span>
+      </nav>
+
+      <section class="bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <div class="bg-slate-900 text-white px-6 py-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <span class="inline-flex items-center rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-wide">SUV</span>
+            <h2 class="text-2xl font-semibold mt-3">Toyota Fortuner 2.8V 4WD</h2>
+            <p class="text-sm text-slate-200 mt-1">Model Year 2024 • เครื่องยนต์ดีเซล 2.8 ลิตร • เกียร์อัตโนมัติ 6 สปีด</p>
+          </div>
+          <div class="text-right">
+            <p class="text-xs text-slate-300 uppercase tracking-wide">ราคาขายปลีกแนะนำ</p>
+            <p class="text-2xl font-semibold text-white">1,465,000 บาท</p>
+            <p class="text-xs text-slate-300 mt-1">ต้นทุนมาตรฐาน 1,329,000 บาท</p>
+          </div>
+        </div>
+
+        <div class="p-6 lg:p-8 space-y-8">
+          <div class="grid gap-6 md:grid-cols-2">
+            <section class="space-y-3">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">สีและออปชัน</h3>
+              <ul class="space-y-2 text-sm text-slate-600">
+                <li><strong class="text-slate-900">สีมาตรฐาน :</strong> Pearl White, Attitude Black, Dark Grey</li>
+                <li><strong class="text-slate-900">สีพิเศษ :</strong> สีน้ำตาล Phantom Brown (เพิ่ม 15,000 บาท)</li>
+                <li><strong class="text-slate-900">อุปกรณ์เด่น :</strong> JBL Premium Audio • เบาะหนังสีดำเดินด้ายสีน้ำตาล • กล้องรอบคัน 360° • ระบบ Toyota Safety Sense</li>
+              </ul>
+            </section>
+            <section class="space-y-3">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">ข้อมูลทางเทคนิค</h3>
+              <ul class="space-y-2 text-sm text-slate-600">
+                <li>เครื่องยนต์ดีเซล 2.8 ลิตร 204 แรงม้า แรงบิด 500 นิวตันเมตร</li>
+                <li>ระบบขับเคลื่อน 4 ล้อ พร้อมโหมดปรับ Terrain</li>
+                <li>เกียร์อัตโนมัติ 6 สปีด Sequential Shift</li>
+                <li>รองรับน้ำหนักบรรทุกสูงสุด 2,750 กิโลกรัม</li>
+              </ul>
+            </section>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2">
+            <section class="space-y-3">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">มิติรถ</h3>
+              <ul class="space-y-1 text-sm text-slate-600">
+                <li>ความยาว : 4,795 มม.</li>
+                <li>ความกว้าง : 1,855 มม.</li>
+                <li>ความสูง : 1,835 มม.</li>
+                <li>ระยะฐานล้อ : 2,745 มม.</li>
+              </ul>
+            </section>
+            <section class="space-y-3">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">บันทึกสำคัญ</h3>
+              <p class="text-sm text-slate-600 leading-6">
+                รุ่นนี้มี Backorder สูง ควรล็อกโควตากับดีลเลอร์ทุกไตรมาส<br>
+                ลูกค้ากลุ่ม Fleet มักขอส่วนลดอุปกรณ์ตกแต่งเพิ่ม แนะนำเตรียมแพ็กเกจเสริม
+              </p>
+            </section>
+          </div>
+
+          <section class="space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">รถในสต็อกที่เชื่อมโยง</h3>
+              <a href="../index.html#stock-management" class="text-sm font-semibold text-indigo-600 hover:text-indigo-500">เปิดดูทั้งหมด</a>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-slate-200 text-sm">
+                <thead class="bg-slate-50">
+                  <tr class="text-left text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    <th class="px-4 py-3">หมายเลขตัวถัง</th>
+                    <th class="px-4 py-3">สี</th>
+                    <th class="px-4 py-3">สถานะ</th>
+                    <th class="px-4 py-3">จำนวนวันในสต็อก</th>
+                    <th class="px-4 py-3">ต้นทุนสุทธิ</th>
+                    <th class="px-4 py-3 text-right">การจัดการ</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y.divide-slate-100 bg-white">
+                  <tr class="hover:bg-slate-50/70">
+                    <td class="px-4 py-3 font-semibold text-slate-900">JTMHU09J704567123</td>
+                    <td class="px-4 py-3 text-slate-600">Pearl White</td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">จองแล้ว</span>
+                    </td>
+                    <td class="px-4 py-3 text-slate-600">32 วัน</td>
+                    <td class="px-4 py-3 text-slate-600">1,392,345 บาท</td>
+                    <td class="px-4 py-3 text-right">
+                      <a href="stock-detail.html" class="text-indigo-600 font-semibold hover:text-indigo-500">ดูสต็อก</a>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50/70">
+                    <td class="px-4 py-3 font-semibold text-slate-900">JTMHU09J704567235</td>
+                    <td class="px-4 py-3 text-slate-600">Attitude Black</td>
+                    <td class="px-4 py-3">
+                      <span class="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">พร้อมขาย</span>
+                    </td>
+                    <td class="px-4 py-3 text-slate-600">18 วัน</td>
+                    <td class="px-4 py-3 text-slate-600">1,358,220 บาท</td>
+                    <td class="px-4 py-3 text-right">
+                      <a href="stock-detail.html" class="text-indigo-600 font-semibold hover:text-indigo-500">ดูสต็อก</a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="bg-white border border-slate-200 rounded-xl p-6 lg:p-8 space-y-6">
+        <div class="flex flex-wrap justify-between items-center gap-4">
+          <h2 class="text-lg font-semibold text-slate-900">แคมเปญที่เชื่อมโยง</h2>
+          <a href="campaign-detail.html" class="rounded-xl border border-indigo-200 px-4 py-2 text-sm font-semibold text-indigo-600 hover:bg-indigo-50">ดูรายละเอียดแคมเปญ</a>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <article class="rounded-2xl border border-slate-200 bg-slate-50/60 p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-semibold text-slate-900">Summer SUV Boost</h3>
+              <span class="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700 uppercase tracking-wide">Active</span>
+            </div>
+            <p class="text-sm text-slate-600 leading-6">
+              แจกอุปกรณ์ตกแต่งมูลค่า 35,000 บาท พร้อมดอกเบี้ยพิเศษ 0.99% สำหรับลูกค้าไฟแนนซ์ในเครือ
+            </p>
+            <p class="text-xs text-slate-500">1 เม.ย. 2024 - 31 พ.ค. 2024</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 bg-slate-50/60 p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-base font-semibold text-slate-900">Fleet Advantage 2024</h3>
+              <span class="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700 uppercase tracking-wide">Scheduled</span>
+            </div>
+            <p class="text-sm text-slate-600 leading-6">
+              ส่วนลด Fleet เพิ่มเติมคันละ 30,000 บาท เมื่อซื้อขั้นต่ำ 3 คัน พร้อมจัดหาอะไหล่สำรองฟรี 1 ปี
+            </p>
+            <p class="text-xs text-slate-500">15 มี.ค. 2024 - 30 มิ.ย. 2024</p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

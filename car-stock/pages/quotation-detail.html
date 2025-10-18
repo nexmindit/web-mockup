@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>รายละเอียดใบเสนอราคา | ระบบจัดการสต็อกรถ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-900 min-h-screen flex flex-col">
+  <header class="bg-slate-900 text-white px-6 lg:px-12 py-6">
+    <div class="max-w-5xl mx-auto flex items-start justify-between gap-6">
+      <div>
+        <p class="text-sm text-slate-300 uppercase tracking-wide">โมดูลการขาย</p>
+        <h1 class="text-3xl font-semibold tracking-tight mt-1">รายละเอียดใบเสนอราคา</h1>
+        <p class="text-slate-200 text-sm mt-2">
+          ตรวจสอบข้อมูลสำคัญของใบเสนอราคา สถานะ และกิจกรรมล่าสุดก่อนส่งต่อไปยังลูกค้า
+        </p>
+      </div>
+      <a href="../index.html#sales-financial" class="hidden sm:inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold text-white hover:bg-white/10 transition">
+        ← กลับโมดูลการขาย
+      </a>
+    </div>
+  </header>
+
+  <main class="flex-1 py-10 px-4">
+    <div class="max-w-5xl mx-auto space-y-8">
+      <nav class="flex flex-wrap items-center gap-2 text-sm text-slate-500">
+        <a href="../index.html" class="hover:text-slate-700">หน้าหลัก</a>
+        <span>/</span>
+        <a href="../index.html#sales-financial" class="hover:text-slate-700">การขายและการเงิน</a>
+        <span>/</span>
+        <span class="text-slate-900 font-semibold">รายละเอียดใบเสนอราคา</span>
+      </nav>
+
+      <section class="bg-white border border-slate-200 rounded-xl overflow-hidden">
+        <div class="bg-slate-900 text-white px-6 py-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-wide text-slate-300">Quotation No. QTN-2404-015</p>
+            <h2 class="text-2xl font-semibold mt-2">Sunrise Trading Co.</h2>
+            <p class="text-sm text-slate-200 mt-1">ผู้ติดต่อ : คุณประไพ วัฒนา • โทร 080-123-4567</p>
+          </div>
+          <div class="text-right space-y-2">
+            <p class="text-xs uppercase tracking-wide text-slate-300">สถานะ</p>
+            <span class="inline-flex items-center rounded-full bg-indigo-100 px-4 py-1 text-xs font-semibold text-indigo-700 uppercase tracking-wide">รอลูกค้ายืนยัน</span>
+            <p class="text-xs text-slate-300">ออกเมื่อ 12 เม.ย. 2024 • หมดอายุ 27 เม.ย. 2024</p>
+          </div>
+        </div>
+
+        <div class="p-6 lg:p-8 space-y-8">
+          <section class="grid gap-6 md:grid-cols-3">
+            <article class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 space-y-1">
+              <h3 class="text-xs font-semibold uppercase tracking-wide text-slate-500">มูลค่าก่อนส่วนลด</h3>
+              <p class="text-2xl font-semibold text-slate-900">1,465,000 บาท</p>
+            </article>
+            <article class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 space-y-1">
+              <h3 class="text-xs font-semibold uppercase tracking-wide text-slate-500">ส่วนลดรวม</h3>
+              <p class="text-2xl font-semibold text-rose-600">60,000 บาท</p>
+            </article>
+            <article class="rounded-2xl border border-slate-200 bg-slate-50/70 p-5 space-y-1">
+              <h3 class="text-xs font-semibold uppercase tracking-wide text-slate-500">ราคารวมสุทธิ</h3>
+              <p class="text-2xl font-semibold text-slate-900">1,405,000 บาท</p>
+            </article>
+          </section>
+
+          <section class="grid gap-6 md:grid-cols-2">
+            <article class="space-y-3">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">รายละเอียดรถ</h3>
+              <ul class="space-y-2 text-sm text-slate-600">
+                <li>รถ : Toyota Fortuner 2.8V 4WD (Pearl White)</li>
+                <li>หมายเลข VIN : JTMHU09J704567123</li>
+                <li>สีภายใน : Black/Brown Leather</li>
+                <li>อุปกรณ์แถม : ฟิล์ม 3M, กล้องบันทึกหน้า-หลัง, พรม 3 มิติ</li>
+              </ul>
+            </article>
+            <article class="space-y-3">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">เงื่อนไขการชำระเงิน</h3>
+              <ul class="space-y-2 text-sm text-slate-600">
+                <li>เงินจอง : 100,000 บาท</li>
+                <li>เงินดาวน์ : 25% ของราคารวมสุทธิ</li>
+                <li>ยอดจัดไฟแนนซ์ : 75% • ดอกเบี้ยพิเศษ 0.99%</li>
+                <li>ส่งมอบภายใน 30 วันหลังชำระเงินดาวน์</li>
+              </ul>
+            </article>
+          </section>
+
+          <section class="space-y-4">
+            <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">แคมเปญและส่วนลด</h3>
+            <div class="rounded-2xl border border-slate-200 bg-slate-50/60 p-5 space-y-2 text-sm text-slate-600">
+              <p><strong class="text-slate-900">Summer SUV Boost :</strong> ชุดอุปกรณ์ตกแต่งมูลค่า 35,000 บาท และดอกเบี้ย 0.99%</p>
+              <p><strong class="text-slate-900">Fleet Advantage 2024 :</strong> ส่วนลด Fleet เพิ่มเติม 25,000 บาท (ลูกค้ากลุ่มองค์กร)</p>
+            </div>
+          </section>
+
+          <section class="space-y-4">
+            <div class="flex flex-wrap items-center justify-between gap-4">
+              <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-500">กิจกรรมล่าสุด</h3>
+              <button class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50">เพิ่มหมายเหตุ</button>
+            </div>
+            <ol class="space-y-4 text-sm text-slate-600">
+              <li class="flex items-start gap-3">
+                <span class="mt-1 h-2 w-2 rounded-full bg-indigo-500"></span>
+                <div>
+                  <p class="font-semibold text-slate-900">14 เม.ย. 2024 – ส่งใบเสนอราคาให้ลูกค้า</p>
+                  <p class="text-xs text-slate-500 mt-1">โดย กิตติศักดิ์ : ส่งอีเมลพร้อมไฟล์ PDF และโทรแจ้งลูกค้าเรียบร้อย</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="mt-1 h-2 w-2 rounded-full bg-emerald-500"></span>
+                <div>
+                  <p class="font-semibold text-slate-900">13 เม.ย. 2024 – ผู้จัดการฝ่ายขายอนุมัติส่วนลด</p>
+                  <p class="text-xs text-slate-500 mt-1">โดย คุณสุนทร : อนุมัติส่วนลดรวม 60,000 บาท และของแถม 3 รายการ</p>
+                </div>
+              </li>
+            </ol>
+          </section>
+        </div>
+      </section>
+
+      <section class="bg-white border border-slate-200 rounded-xl p-6 lg:p-8 space-y-6">
+        <div class="flex flex-wrap justify-between items-center gap-4">
+          <h2 class="text-lg font-semibold text-slate-900">การดำเนินการด่วน</h2>
+          <div class="flex gap-3">
+            <button class="rounded-xl border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-50">ดาวน์โหลด PDF</button>
+            <button class="rounded-xl border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-600 hover:bg-indigo-100">ส่งอีเมลซ้ำ</button>
+            <button class="rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow hover:bg-emerald-500">สร้างสัญญาจอง</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
